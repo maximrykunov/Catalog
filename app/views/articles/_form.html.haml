@@ -10,11 +10,7 @@
     = f.label :name
     = f.text_field :name
   .field
-    - cat_array = []
-    - Category.each_with_level(Category.root.self_and_descendants) do |cat, level|
-      - cat_array << ["#{'-' * cat.level} #{cat.name}", cat.id, cat.leaf? ? {} : {disabled: true}]
-
     = f.label :category_id
-    = f.select :category_id, options_for_select(cat_array, @article.category_id), {include_blank: true}
+    = f.select :category_id, options_for_select(Category.whole_tree, @article.category_id), {include_blank: true}
   .actions
     = f.submit 'Save'
