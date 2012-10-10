@@ -1,0 +1,21 @@
+%h1 Listing categories
+- if @parents_and_me
+  = link_to 'Home', categories_path
+  - @parents_and_me.each do |cat|
+    = " -> #{link_to(cat.name, child_categories_path(cat.id))}".html_safe
+%table
+  %tr
+    %th Id
+    %th Name
+    %th
+    %th
+    %th
+  - @categories.each do |category|
+    %tr
+      %td= category.id
+      %td= link_to category.name, child_categories_path(category.id)
+      %td= link_to 'Show', category
+      %td= link_to 'Edit', edit_category_path(category)
+      %td= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to 'New Category', new_category_path
