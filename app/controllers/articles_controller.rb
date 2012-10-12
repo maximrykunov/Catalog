@@ -6,12 +6,12 @@ class ArticlesController < ApplicationController
     if params['offset'] && params['limit']
       @articles = Article.all(:offset => params['offset'].to_i, :limit => params['limit'].to_i)
     else
-      @articles = Article.all
+      @articles = Article.includes(:category)
     end
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @articles }
+      format.json { render json: @articles, :only => [:id, :name, :category_id], :methods => :category_name}
     end
   end
 
