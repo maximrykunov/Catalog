@@ -1,7 +1,5 @@
-object false
+collection @categories 
 
-# create a "places" node
-node :categories do
-  # setup a { place : { ...data... } } json array
-  @categories.map { |data| { :category => data } }
-end
+node do |r|
+  r
+end 
