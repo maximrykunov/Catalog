@@ -2,7 +2,12 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
+    # we implement limit and offset
+    if params['offset'] && params['limit']
+      @articles = Article.all(:offset => params['offset'].to_i, :limit => params['limit'].to_i)
+    else
+      @articles = Article.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb
