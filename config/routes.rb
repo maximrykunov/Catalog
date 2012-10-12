@@ -2,6 +2,7 @@ Catalog::Application.routes.draw do
   resources :categories, except: [:index] do
     get '(/:parent_id)' => 'categories#index', as: 'child', on: :collection,
       :constraints => {parent_id: /[0-9]+/}
+    get 'tree' => 'categories#tree', as: 'tree', on: :collection
   end
 
   resources :articles

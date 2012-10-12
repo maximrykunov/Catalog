@@ -17,4 +17,15 @@ class Category < ActiveRecord::Base
     end
     cat_array
   end
+
+  def self.tree
+    cat_array = []
+    position = 0
+    Category.roots.each do |mcat|
+      Category.each_with_level(mcat.self_and_descendants) do |cat, level|
+        cat_array << {id: cat.id, name: "#{'-' * cat.level} #{cat.name}", position: position+=1, enabled: cat.leaf? ? true : false}
+      end
+    end
+    cat_array
+  end
 end

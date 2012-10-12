@@ -15,6 +15,15 @@ class CategoriesController < ApplicationController
     end
   end
 
+  # GET /categories/tree.json
+  def tree
+    @categories = Category.tree
+
+    respond_to do |format|
+      format.json
+    end
+  end
+
   # GET /categories/1
   # GET /categories/1.json
   def show

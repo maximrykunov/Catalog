@@ -23,6 +23,8 @@ gem 'awesome_nested_set'
 
 gem 'haml-rails'
 
+gem 'rabl'
+
 group :development do
   gem 'sqlite3'
 end
