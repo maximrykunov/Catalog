@@ -3,6 +3,7 @@ class CategoriesController < ApplicationController
   # GET /categories.json
   def index
     @categories = Category.only_parents_for(params[:parent_id])
+    @categories_json = Category.only_parents_for(params[:parent_id])
 
     if params[:parent_id]
       @category = Category.find(params[:parent_id])
