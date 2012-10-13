@@ -51,10 +51,11 @@ class ArticlesController < ApplicationController
       if @article.save
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
         format.json { render json: @article, status: :created, location: @article }
-        format.xml { head :ok }
+        format.xml  { render xml: @article, status: :created, location: @product }
       else
         format.html { render action: "new" }
         format.json { render json: @article.errors, status: :unprocessable_entity }
+        format.xml  { render xml: @article.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -72,6 +73,7 @@ class ArticlesController < ApplicationController
       else
         format.html { render action: "edit" }
         format.json { render json: @article.errors, status: :unprocessable_entity }
+        format.xml  { render xml: @article.errors, status: :unprocessable_entity }
       end
     end
   end
