@@ -51,7 +51,7 @@ class ArticlesController < ApplicationController
       if @article.save
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
         format.json { render json: @article, status: :created, location: @article }
-        format.xml  { render xml: @article, status: :created, location: @product }
+        format.xml  { render xml: @article, status: :created, location: @article }
       else
         format.html { render action: "new" }
         format.json { render json: @article.errors, status: :unprocessable_entity }
